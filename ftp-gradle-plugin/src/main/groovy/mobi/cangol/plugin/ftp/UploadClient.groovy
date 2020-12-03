@@ -30,16 +30,37 @@ class UploadClient {
         try{
 
             ftpClient=new FTPClient()
-            ftpClient.connect(extension.getHost(),extension.getPort())
+            ftpClient.connect(extension.getHost(),Integer.parseInt(extension.getPort()))
             ftpClient.login(extension.getUsername(), extension.getPassword())
+            ftpClient.setBufferSize(4096);
             ftpClient.enterLocalPassiveMode()
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE)
 
             fileInputStream=new FileInputStream(file)
-            ftpClient.storeFile(filePath,fileInputStream)
 
+            String[] arr =  filePath.split("/");
+            for(String s : arr){
+                if(s.length()==0||s.toLowerCase().endsWith(".apk")||s.toLowerCase().endsWith(".ipa"))continue;
+                String dir = new String(s.getBytes(),ftpClient.getControlEncoding());
+                if(ftpClient.changeWorkingDirectory(dir)){
+                    log.warn("changeWorkingDirectory success ===> " + s)
+                    continue;
+                }else{
+                    log.warn("changeWorkingDirectory fail ===> " + s)
+                }
+                if(!ftpClient.makeDirectory(dir)){
+                    log.warn("makeDirectory fail ===> " + s)
+                    break;
+                }else{
+                    log.warn("makeDirectory success ===> " + s)
+                    ftpClient.changeWorkingDirectory(dir)
+                }
+            }
+
+            boolean result=ftpClient.storeFile(file.getName(),fileInputStream)
+            log.warn("storeFile ===> " + result)
         }catch(Exception e){
-            e.printStackTrace()
+            log.error("upload"+e.getMessage())
         }finally{
             if(fileInputStream!=null){
                 fileInputStream.close()

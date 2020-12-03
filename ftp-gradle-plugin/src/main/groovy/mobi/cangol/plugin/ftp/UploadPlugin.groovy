@@ -17,7 +17,7 @@ class UploadPlugin implements Plugin<Project> {
 
         project.android.applicationVariants.all { variant ->
             if (extension == null) {
-                log.error("Please config your ftp(smb,username,password) in your build.gradle.")
+                log.error("Please config your ftp(host,username,password) in your build.gradle.")
                 return
             }
             if (extension.host==null||extension.username==null||extension.password==null) {

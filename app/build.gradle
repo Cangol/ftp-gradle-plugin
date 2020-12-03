@@ -4,7 +4,7 @@ apply plugin: 'mobi.cangol.plugin.ftp'
 
 ftp{
     host '192.168.57.172'
-    domain ''
+    port '21'
     username 'user'
     password '123456'
     debugDir "/测试APP/测试环境/android/${getVersionFolder()}"
