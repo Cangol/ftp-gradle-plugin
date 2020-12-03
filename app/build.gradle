@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'mobi.cangol.plugin.smbfile'
-
-smbfile{
-    url '//192.168.59.1/研发中心/方德事业部/App'
+apply plugin: 'mobi.cangol.plugin.ftp'
+ftp{
+    host '192.168.57.172'
     domain ''
-    username 'xuewu.wei'
-    password 'Aa111111'
-    debugDir "/方德港美股/测试环境/android/${getVersionFolder()}"
-    releaseDir "/方德港美股/正式环境/android/${getVersionFolder()}"
+    username 'user'
+    password '123456'
+    debugDir "/测试APP/测试环境/android/${getVersionFolder()}"
+    releaseDir "/测试APP/正式环境/android/${getVersionFolder()}"
 }
 
 def getVersionFolder() {

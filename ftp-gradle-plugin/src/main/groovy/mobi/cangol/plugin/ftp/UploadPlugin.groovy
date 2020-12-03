@@ -20,7 +20,7 @@ class UploadPlugin implements Plugin<Project> {
                 log.error("Please config your smbfile(smb,username,password) in your build.gradle.")
                 return
             }
-            if (extension.url==null&&(extension.username==null&&extension.password==null)) {
+            if (extension.host==null&&(extension.username==null&&extension.password==null)) {
                 log.error("Please config your ftp(host,username,password) in your build.gradle.")
                 return
             }
