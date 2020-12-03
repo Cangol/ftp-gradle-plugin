@@ -18,7 +18,7 @@ Usage
 
         ftp{
             url '替换为你的 ftp共享主机地址' //如:192.168.1.1
-            domain '替换为你的 ftp共享的域'
+            port '替换为你的 ftp共享的端口' //如:21
             username '替换为你的 ftp共享的 username'
             password '替换为你的 ftp共享的 password'
             debugDir '替换为你的 ftp共享的 debug目录' //如:/app/Debug/
