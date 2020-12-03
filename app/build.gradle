@@ -32,7 +32,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "mobi.cangol.plugin.smbfile"
+        applicationId "mobi.cangol.plugin.ftp"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1

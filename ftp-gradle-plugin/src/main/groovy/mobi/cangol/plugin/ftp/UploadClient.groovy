@@ -7,13 +7,13 @@ import org.apache.commons.net.ftp.FTPClient
 class UploadClient {
     private static final Log log = LogFactory.getLog(UploadClient.class)
     private UploadPluginExtension extension
-    private static UploadClient smbClient
+    private static UploadClient client
 
     static UploadClient init(UploadPluginExtension extension) {
-        if (smbClient == null) {
-            smbClient = new UploadClient(extension)
+        if (client == null) {
+            client = new UploadClient(extension)
         }
-        return smbClient
+        return client
     }
 
     UploadClient(UploadPluginExtension extension) {
