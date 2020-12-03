@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'mobi.cangol.plugin.smbfile'
+
+smbfile{
+    url '//192.168.59.1/研发中心/方德事业部/App'
+    domain ''
+    username 'xuewu.wei'
+    password 'Aa111111'
+    debugDir "/方德港美股/测试环境/android/${getVersionFolder()}"
+    releaseDir "/方德港美股/正式环境/android/${getVersionFolder()}"
+}
+
+def getVersionFolder() {
+    def time = new Date().format("yyyy-MM-dd_HH-mm-ss", TimeZone.getTimeZone("GMT+8"))
+    return  "V1.0.0.1_" + time
+}
+
+task printVersionName {
+    doLast {
+        println android.defaultConfig.versionName
+    }
+}
+
+task printVersionCode {
+    doLast {
+        println android.defaultConfig.versionName
+    }
+}
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "mobi.cangol.plugin.smbfile"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
