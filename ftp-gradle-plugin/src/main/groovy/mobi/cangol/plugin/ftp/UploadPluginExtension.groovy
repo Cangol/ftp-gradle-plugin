@@ -1,7 +1,7 @@
 package mobi.cangol.plugin.ftp
 
 class UploadPluginExtension {
-    String url
+    String host
     String domain
     String username
     String password

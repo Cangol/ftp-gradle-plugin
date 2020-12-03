@@ -13,7 +13,7 @@ class UploadPlugin implements Plugin<Project> {
         if (!hasAppPlugin) {
             throw new IllegalStateException("The 'com.android.application' plugin is required.")
         }
-        def extension = project.extensions.create('smbfile', UploadPluginExtension)
+        def extension = project.extensions.create('ftp', UploadPluginExtension)
 
         project.android.applicationVariants.all { variant ->
             if (extension == null) {
@@ -21,7 +21,7 @@ class UploadPlugin implements Plugin<Project> {
                 return
             }
             if (extension.url==null&&(extension.username==null&&extension.password==null)) {
-                log.error("Please config your smbfile(smb,username,password) in your build.gradle.")
+                log.error("Please config your ftp(host,username,password) in your build.gradle.")
                 return
             }
 
@@ -33,14 +33,14 @@ class UploadPlugin implements Plugin<Project> {
             }
             def productFlavorName = productFlavorNames.join('')
             def variationName = "${productFlavorName}${buildTypeName}"
-            def uploadApkTaskName = "smbfileUpload${variationName}"
+            def uploadApkTaskName = "ftpUpload${variationName}"
             def assembleTask = extension.dependsOn != null ? "${extension.dependsOn}${variationName}" : variant.assemble
             log.info("uploadApkTaskName == " + uploadApkTaskName)
             def uploadApkTask = project.tasks.create(uploadApkTaskName, UploadTask)
             uploadApkTask.extension = extension
             uploadApkTask.variant = variant
             uploadApkTask.description = "Uploads the APK for the ${variationName} build"
-            uploadApkTask.group = "smbfile"
+            uploadApkTask.group = "ftp"
             uploadApkTask.dependsOn assembleTask
         }
     }
