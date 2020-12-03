@@ -3,7 +3,7 @@ apply from: '../maven_push.gradle'
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-    implementation 'commons-net:commons-net:3.6'
+    implementation 'commons-net:commons-net:3.7'
     compileOnly 'com.android.tools.build:gradle:3.5.3'
 }
 task sourcesJar(type: Jar) {

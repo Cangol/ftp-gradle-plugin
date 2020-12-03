@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'mobi.cangol.plugin.ftp'
+
 ftp{
     host '192.168.57.172'
     domain ''
