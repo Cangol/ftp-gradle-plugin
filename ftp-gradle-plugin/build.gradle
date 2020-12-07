@@ -4,7 +4,7 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
     implementation 'commons-net:commons-net:3.7'
-    compileOnly 'com.android.tools.build:gradle:3.5.3'
+    compileOnly 'com.android.tools.build:gradle:3.5.4'
 }
 task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
